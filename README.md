@@ -104,7 +104,10 @@ User visits index.php
 
 ### POS Billing System — Branch 1
 
-The billing interface (`cashier/billing.php`) is the primary daily-use screen for cashiers:
+<img width="1920" height="2107" alt="image" src="https://github.com/user-attachments/assets/99298159-8207-4da5-800b-b79e0ee189a7" />
+
+
+The billing interface is the primary daily-use screen for cashiers:
 
 - Live product search with instant dropdown during the billing session
 - Auto-generated bill numbers using branch prefix format: `PS-B1-0001`
