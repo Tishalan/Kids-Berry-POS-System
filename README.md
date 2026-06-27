@@ -1,10 +1,10 @@
 <div align="center">
 
 # Kids Berry
-### Velvet Vogue — Point of Sale & Inventory Management System
+### Point of Sale & Inventory Management System
 
 **A full-stack multi-branch retail management platform built for Kids Berry toy shop**
-Developed by **Sky Tec** &nbsp;|&nbsp; Live on **Hostinger**
+Developed by **Sky Tec** &nbsp;|&nbsp; 
 
 <br>
 
@@ -15,12 +15,6 @@ Developed by **Sky Tec** &nbsp;|&nbsp; Live on **Hostinger**
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
-<br>
-
-![Status](https://img.shields.io/badge/Status-Live%20on%20Hostinger-4ade80?style=flat-square)
-![Branches](https://img.shields.io/badge/Branches-2%20Locations-7e22ce?style=flat-square)
-![Roles](https://img.shields.io/badge/User%20Roles-4-2e1065?style=flat-square)
-![DB Tables](https://img.shields.io/badge/DB%20Tables-20-1e3a8a?style=flat-square)
 
 </div>
 
@@ -455,7 +449,7 @@ For production deployment:
 
 <div align="center">
 
-**Developed by Sky Tec**
+**Developed by [Sky Tec](https://sky-tec.site/)**
 
 This is a client-commissioned project built for Kids Berry toy retail.
 The repository reflects the mock/demo version of the live system.
