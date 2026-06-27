@@ -224,26 +224,49 @@ A custom prediction engine runs in PHP using MySQL historical data:
 
 ### Additional Features
 
-**Credit & Payment Tracking**
-Cashiers can record credit sales and track outstanding balances per customer. Partial payments are supported with a running balance updated on each payment. Credit reports show all open balances.
+### Credit & Payment Tracking
+- Full credit bill management with balance tracking
+- Outstanding credit reports per customer
+- Partial payment recording and running balance calculation
 
-**Returns & Refund Management**
-Return sales are processed with reference to the original bill. Stock is automatically adjusted upward on return. All returns are logged in `returns_tracking` / `returns_tracking2`.
+### Returns & Refund Management
+- Return sale workflow with original bill reference
+- Stock auto-adjustment on return
+- Return record tracking via `returns_tracking` database table
 
-**PSN (Product Serial Number) Manager**
-For individually tracked products, cashiers can bulk-generate serial numbers with a custom prefix, suffix, and number range (e.g. `KB-000001-A`). Each PSN is stored in `product_psn_tracking` and marked `sold` when billed. Duplicates are prevented system-wide.
+### PSN (Product Serial Number) Manager
+The PSN Manager is a serial number tracking system built for high-value or individually tracked products:
+- Bulk PSN number generation using a configurable prefix, suffix, and numeric range (e.g., `KB-000001-A` to `KB-000500-A`)
+- Each PSN is stored in `product_psn_tracking` with status tracking (`available` / `sold`)
+- PSNs are linked to specific products and are marked as sold when billed
+- Prevents duplicate PSN assignment across the system
+- Available from both the Jaffna and Chunnakam cashier portals
 
-**Barcode Scanner**
-Stock keepers can look up products by scanning or typing a barcode. Results show product name, current stock, price, and supplier. Supports both barcode field and product ID as lookup keys.
+### Inventory & Stock Management
+- Product catalog with stock levels, sale price, and original price
+- Barcode scanning and product lookup by barcode or product ID
+- Low stock alerts on admin dashboard (threshold: 10 units)
+- Full stock transaction log covering transfers, additions, and movements
+- Product image uploads supported per branch
 
-**SMS Notifications**
-Integrated with Dialog Ideamart REST API. Sri Lankan phone numbers are auto-formatted to `94XXXXXXXXX`. SMS logs are stored in `sms_logs`. Supports GSM7 encoding for English and Sinhala.
+### Supplier Management
+- Full supplier profile with contact information
+- Supplier-linked products
+- Purchase records and transaction history per supplier
 
-**Supplier Management**
-Full supplier profiles with contact details, linked products, and purchase history per supplier — available per branch.
+### SMS Notification System
+- Integrated with **Dialog Ideamart API** (Sri Lankan telco)
+- Auto-formats Sri Lankan phone numbers to international `94XXXXXXXXX` format
+- SMS logs stored in `sms_logs` database table
+- Supports GSM7 encoding (English and Sinhala)
+- Used for customer notifications and bill confirmations
 
-**Reports & Analytics**
-Daily, weekly, and monthly sales reports per branch. Profit = sale price minus original cost. Cashier-wise performance breakdown. All reports are printable.
+### Reports & Analytics
+- Daily, weekly, and monthly sales reports per branch
+- Profit calculation (sale price minus original cost)
+- Today's sales, today's profit, and total stock value on dashboard
+- Cashier-wise performance breakdown
+- Exportable / printable stock reports
 
 ---
 
@@ -316,20 +339,20 @@ Kids Berry/
 
 | Layer | Technology |
 |---|---|
-| Backend | PHP 7.4+ — procedural, session-based authentication |
-| Database | MySQL via MySQLi — 20 tables, branch-isolated design |
-| Frontend | HTML5, CSS3, Vanilla JavaScript, AJAX |
-| UI Framework | Bootstrap, Font Awesome 6, Google Fonts (Inter, Outfit) |
-| Charts | Chart.js — sales trend graphs on dashboard |
-| SMS | Dialog Ideamart REST API |
-| Hosting | Hostinger — live production deployment |
-| Theme | Deep purple / forest green gradient, animated floating background |
+| Backend | PHP 7.4+ (procedural with session-based auth) |
+| Database | MySQL via MySQLi extension |
+| Frontend | HTML5, CSS3, JavaScript (vanilla + AJAX) |
+| UI Framework | Bootstrap + Font Awesome + Google Fonts (Inter, Outfit) |
+| Charts | Chart.js (sales trend charts on dashboard) |
+| SMS API | Dialog Ideamart REST API |
+| Hosting | Hostinger (live production deployment) |
+| Theme | Deep purple / forest green custom UI with animated backgrounds |
 
 ---
 
 ## Database Schema
 
-`kidsberry` — 20 tables. All core tables exist in pairs for branch isolation:
+The database `kidsberry` contains 20 tables, designed with branch isolation in mind. All core tables have a `branch1` and `branch2` version:
 
 | Group | Tables |
 |---|---|
@@ -343,43 +366,77 @@ Kids Berry/
 
 ---
 
-## Local Setup
+## Local Setup Guide
 
-**Prerequisites:** PHP 7.4+, MySQL 5.7+, XAMPP / WAMP / LAMP
+### Prerequisites
+- PHP 7.4 or higher
+- MySQL 5.7 or higher
+- XAMPP / WAMP / LAMP or any local PHP server
 
+### Installation Steps
+
+**1. Clone the repository**
 ```bash
-# 1. Clone the repository
 git clone https://github.com/your-username/kids-berry.git
+```
 
-# 2. Move into your server root (htdocs or www)
-# 3. Import the database
-#    Open phpMyAdmin > create database 'kidsberry' > import kidsberry.sql
+**2. Move to server root**
 
-# 4. Default DB credentials (update if needed)
+Copy the `Kids Berry` folder into your XAMPP/WAMP `htdocs` or `www` directory.
+
+**3. Import the database**
+
+Open phpMyAdmin, create a new database named `kidsberry`, then import:
+```
+Kids Berry/kidsberry.sql
+```
+
+**4. Configure database connection**
+
+The default credentials are set to local XAMPP defaults across all PHP files:
+```php
 $servername = "localhost";
 $username   = "root";
 $password   = "";
 $dbname     = "kidsberry";
+```
 
-# 5. Optional — configure SMS
-#    In send_sms.php: replace APP_XXXXXX and your_password with Dialog Ideamart credentials
+Update these in each PHP file if your local environment differs.
 
-# 6. Launch
+**5. Configure SMS API (optional)**
+
+In `send_sms.php` and `admin/send_sms.php`, replace the placeholder credentials:
+```php
+$applicationId = "APP_XXXXXX";   // Your Dialog Ideamart App ID
+$password      = "your_password"; // Your Dialog Ideamart password
+```
+
+**6. Launch the system**
+
+Navigate to:
+```
 http://localhost/Kids Berry/index.php
 ```
 
----
+Select your branch and log in using the appropriate role credentials.
+```
 
-## Deployment Notes
+## Screenshots
 
-Live on **Hostinger** as a production client system.
+> Screenshots are referenced from the live hosted system. Add your own screenshots in a `/screenshots` folder and update these paths.
 
-For deployment:
-- Update DB credentials across all PHP files to match hosting environment
-- Upload via FTP or Hostinger File Manager
-- Import `kidsberry.sql` via phpMyAdmin on hosting panel
-- Set upload directories to permission `755`: `/stock_keeper/uploads/`, `/admin/uploads/`
-- Add Dialog Ideamart credentials in `send_sms.php`
+| Screen | Description |
+|---|---|
+| `screenshots/branch-select.png` | Landing page - branch selection with animated background |
+| `screenshots/admin-dashboard.png` | Admin analytics dashboard with sales charts and branch switcher |
+| `screenshots/billing.png` | POS billing interface with live product search |
+| `screenshots/prediction.png` | AI sales prediction dashboard (cashier + branch level) |
+| `screenshots/stock-dashboard.png` | Stock keeper dashboard with low stock alerts |
+| `screenshots/stock-transfer.png` | Inter-branch stock transfer interface |
+| `screenshots/barcode.png` | Barcode scanner / product lookup |
+| `screenshots/psn-manager.png` | PSN bulk generation and serial tracking |
+| `screenshots/credit-payments.png` | Credit bill management and payment tracking |
+| `screenshots/report.png` | Sales and profit reports |
 
 ---
 
@@ -389,7 +446,11 @@ For deployment:
 
 **Developed by Sky Tec**
 
-Client-commissioned project for **Kids Berry** toy retail, Sri Lanka.
-This repository is the demo version. Live system hosted on Hostinger.
+This is a client-commissioned project built for Kids Berry toy retail. The repository reflects the mock/demo version of the live system. Sensitive credentials and client-specific configurations have been removed. 
+</div>
+---
+<div align="center">
+
+Built with dedication by **Sky Tec** for **Kids Berry**
 
 </div>
