@@ -4,7 +4,7 @@
 ### Point of Sale & Inventory Management System
 
 **A full-stack multi-branch retail management platform built for Kids Berry toy shop**
-Developed by **Sky Tec** &nbsp;|&nbsp; 
+Developed by **Sky Tec**
 
 <br>
 
