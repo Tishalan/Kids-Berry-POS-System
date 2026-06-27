@@ -183,6 +183,8 @@ Stock Keeper selects products to transfer
 
 ### Admin Dashboard
 
+<img width="1920" height="2471" alt="image" src="https://github.com/user-attachments/assets/d8d5e97d-3e52-4693-a2d6-ea3edcd3cce8" />
+
 The central admin panel gives full visibility across both branches from a single interface:
 
 - Real-time branch switching via AJAX (no page reload)
