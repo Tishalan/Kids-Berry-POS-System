@@ -71,13 +71,12 @@ Branch 2  —  Chunnakam Branch (Mega Centre)
        suppliers                   suppliers2
               \                          /
                \____stock_transactions__/
-                  (shared transfer log)
+                     (shared transfer log)
 ```
 
 ---
 
-### Role-Based Access Control
-The system has four distinct user roles with separate login portals:
+## User Roles & Access
 
 | Role | Access Level |
 |---|---|
@@ -87,8 +86,6 @@ The system has four distinct user roles with separate login portals:
 | **Branch Cashier** | Branch-specific billing (Chunnakam branch only) |
 
 ---
-
-
 
 ## Key Features
 
@@ -222,46 +219,64 @@ A custom prediction engine runs in PHP using MySQL historical data:
 
 ---
 
-### Additional Features
-
 ### Credit & Payment Tracking
+
 - Full credit bill management with balance tracking
 - Outstanding credit reports per customer
 - Partial payment recording and running balance calculation
 
+---
+
 ### Returns & Refund Management
+
 - Return sale workflow with original bill reference
 - Stock auto-adjustment on return
 - Return record tracking via `returns_tracking` database table
 
+---
+
 ### PSN (Product Serial Number) Manager
+
 The PSN Manager is a serial number tracking system built for high-value or individually tracked products:
+
 - Bulk PSN number generation using a configurable prefix, suffix, and numeric range (e.g., `KB-000001-A` to `KB-000500-A`)
 - Each PSN is stored in `product_psn_tracking` with status tracking (`available` / `sold`)
 - PSNs are linked to specific products and are marked as sold when billed
 - Prevents duplicate PSN assignment across the system
 - Available from both the Jaffna and Chunnakam cashier portals
 
+---
+
 ### Inventory & Stock Management
+
 - Product catalog with stock levels, sale price, and original price
 - Barcode scanning and product lookup by barcode or product ID
 - Low stock alerts on admin dashboard (threshold: 10 units)
 - Full stock transaction log covering transfers, additions, and movements
 - Product image uploads supported per branch
 
+---
+
 ### Supplier Management
+
 - Full supplier profile with contact information
 - Supplier-linked products
 - Purchase records and transaction history per supplier
 
+---
+
 ### SMS Notification System
+
 - Integrated with **Dialog Ideamart API** (Sri Lankan telco)
 - Auto-formats Sri Lankan phone numbers to international `94XXXXXXXXX` format
 - SMS logs stored in `sms_logs` database table
 - Supports GSM7 encoding (English and Sinhala)
 - Used for customer notifications and bill confirmations
 
+---
+
 ### Reports & Analytics
+
 - Daily, weekly, and monthly sales reports per branch
 - Profit calculation (sale price minus original cost)
 - Today's sales, today's profit, and total stock value on dashboard
@@ -369,6 +384,7 @@ The database `kidsberry` contains 20 tables, designed with branch isolation in m
 ## Local Setup Guide
 
 ### Prerequisites
+
 - PHP 7.4 or higher
 - MySQL 5.7 or higher
 - XAMPP / WAMP / LAMP or any local PHP server
@@ -419,24 +435,19 @@ http://localhost/Kids Berry/index.php
 ```
 
 Select your branch and log in using the appropriate role credentials.
-```
 
-## Screenshots
+---
 
-> Screenshots are referenced from the live hosted system. Add your own screenshots in a `/screenshots` folder and update these paths.
+## Deployment Notes
 
-| Screen | Description |
-|---|---|
-| `screenshots/branch-select.png` | Landing page - branch selection with animated background |
-| `screenshots/admin-dashboard.png` | Admin analytics dashboard with sales charts and branch switcher |
-| `screenshots/billing.png` | POS billing interface with live product search |
-| `screenshots/prediction.png` | AI sales prediction dashboard (cashier + branch level) |
-| `screenshots/stock-dashboard.png` | Stock keeper dashboard with low stock alerts |
-| `screenshots/stock-transfer.png` | Inter-branch stock transfer interface |
-| `screenshots/barcode.png` | Barcode scanner / product lookup |
-| `screenshots/psn-manager.png` | PSN bulk generation and serial tracking |
-| `screenshots/credit-payments.png` | Credit bill management and payment tracking |
-| `screenshots/report.png` | Sales and profit reports |
+This system is deployed and running live on **Hostinger** for Kids Berry as a production client project.
+
+For production deployment:
+- Update all database credentials in every PHP file to match your hosting database
+- Upload the full project via FTP or Hostinger File Manager
+- Import `kidsberry.sql` via phpMyAdmin on your hosting panel
+- Set file permissions for upload directories (`/stock_keeper/uploads/`, `/admin/uploads/`) to `755`
+- Configure Dialog Ideamart SMS credentials in `send_sms.php`
 
 ---
 
@@ -446,10 +457,11 @@ Select your branch and log in using the appropriate role credentials.
 
 **Developed by Sky Tec**
 
-This is a client-commissioned project built for Kids Berry toy retail. The repository reflects the mock/demo version of the live system. Sensitive credentials and client-specific configurations have been removed. 
-</div>
----
-<div align="center">
+This is a client-commissioned project built for Kids Berry toy retail.
+The repository reflects the mock/demo version of the live system.
+Sensitive credentials and client-specific configurations have been removed.
+
+<br>
 
 Built with dedication by **Sky Tec** for **Kids Berry**
 
