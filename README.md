@@ -135,6 +135,9 @@ Cashier logs in
 
 ### Inter-Branch Stock Transfer — Branch 2 (Chunnakam) Stock Keeper
 
+<img width="1920" height="1456" alt="image" src="https://github.com/user-attachments/assets/9d27cbf9-97f9-457c-b3f2-01ade1d52474" />
+
+
 > **Access:** This feature is available exclusively from the **Branch 2 (Chunnakam Mega Centre)** Stock Keeper portal. Branch 1 stock keepers can initiate single-product transfers; Branch 2 supports full multi-product batch transfers.
 
 This is the core feature connecting both branches. Stock keepers can move inventory between Branch 1 and Branch 2 in real time without manual duplication.
