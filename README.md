@@ -76,30 +76,17 @@ Branch 2  —  Chunnakam Branch (Mega Centre)
 
 ---
 
-## User Roles & Access
+### Role-Based Access Control
+The system has four distinct user roles with separate login portals:
 
-The system has four distinct roles, each with a dedicated login portal and scoped access:
+| Role | Access Level |
+|---|---|
+| **Admin** | Full system access, all branches, all reports, user management |
+| **Cashier** | Billing, credit, returns, customer lookup, predictions |
+| **Stock Keeper** | Stock, products, suppliers, barcode, transactions |
+| **Branch Cashier** | Branch-specific billing (Chunnakam branch only) |
 
-```
-+------------------+-------------------------------------------------------+
-|   ROLE           |   ACCESS                                              |
-+------------------+-------------------------------------------------------+
-|  Admin           |  Full system — all branches, reports, user mgmt,      |
-|                  |  AI predictions, SMS, supplier & product control       |
-+------------------+-------------------------------------------------------+
-|  Cashier         |  POS billing, credit tracking, returns, customer       |
-|  (Branch 1)      |  management, PSN manager, prediction dashboard,        |
-|                  |  bill history, print & download bills                  |
-+------------------+-------------------------------------------------------+
-|  Stock Keeper    |  Stock management, barcode lookup, inter-branch        |
-|  (Branch 1)      |  stock transfer (initiate), supplier records,          |
-|                  |  product catalog, stock transaction log                |
-+------------------+-------------------------------------------------------+
-|  Branch 2        |  Same as Branch 1 roles above but scoped to           |
-|  (Cashier +      |  Chunnakam Mega Centre data — with additional          |
-|  Stock Keeper)   |  multi-product batch stock transfer capability         |
-+------------------+-------------------------------------------------------+
-```
+---
 
 ---
 
