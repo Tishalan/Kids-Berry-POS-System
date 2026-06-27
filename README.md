@@ -85,6 +85,9 @@ Branch 2  —  Chunnakam Branch (Mega Centre)
 
 ### Login & Branch Selection
 
+<img width="1920" height="912" alt="image" src="https://github.com/user-attachments/assets/3a286533-035f-4963-ac48-473679bcddef" />
+
+
 The entry point is a unified branch selection page with an animated floating toys background (deep purple to forest green gradient). Each branch routes to its own login portal, and each role (Admin, Cashier, Stock Keeper) has a separate authentication session managed via PHP `$_SESSION`.
 
 ```
